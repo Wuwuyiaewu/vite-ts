@@ -16,8 +16,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 <template>
   <el-aside>
     <el-row class="tac">
-      <el-col :span="12">
-        <h5 class="mb-2">Default colors</h5>
+      <el-col :span="24">
         <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
           <el-sub-menu index="1">
             <template #title>
@@ -58,7 +57,7 @@ const handleClose = (key: string, keyPath: string[]) => {
       </el-col>
       <el-col :span="12">
         <h5 class="mb-2">Custom colors</h5>
-        <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo" default-active="2"
+        <el-menu active-text-color="#ffd04b"   background-color="#545c64" class="el-menu-vertical-demo" default-active="1"
           text-color="#fff" @open="handleOpen" @close="handleClose">
           <el-sub-menu index="1">
             <template #title>
@@ -101,3 +100,8 @@ const handleClose = (key: string, keyPath: string[]) => {
   </el-aside>
 </template>
   
+<style lang="scss" scoped>
+.el-menu-vertical-demo{
+
+}
+</style>
