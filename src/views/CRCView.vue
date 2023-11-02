@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import HeaderMenuComponent from '@/components/HeaderMenuComponent.vue'
 import SideBar from '@/components/SideBarComponent.vue'
 import Neo4jDDD from '@/components/example/Neo4jDDD.vue';
 </script>
@@ -6,7 +7,7 @@ import Neo4jDDD from '@/components/example/Neo4jDDD.vue';
   <div class="crc">
     <div class="common-layout">
     <el-container>
-      <el-header>Header</el-header>
+      <el-header><HeaderMenuComponent/></el-header>
       <el-container>
         <SideBar/>
         <el-main>
