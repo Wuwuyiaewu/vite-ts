@@ -1,15 +1,22 @@
 <template>
-    <div id="viz">viz</div>
-    <DescriptionItem></DescriptionItem>
+    <el-container>
+        <el-header><el-input v-model="input" placeholder="Please input Cypher" @keydown.enter="draw"/></el-header>
+        <el-container>
+            <div id="viz">viz</div>
+            <DescriptionItem :Neo4jValue="Neo4jValue"></DescriptionItem>
+        </el-container>
+    </el-container>
     <button @click="draw()">draw</button>
 </template>
 
 <script setup lang="ts">
 import NeoVis from 'neovis.js';
 import DescriptionItem from '@/components/DescriptionComponent.vue'
-import { onMounted } from 'vue'
-var viz
-var config = {
+import { onMounted, ref } from 'vue'
+const input = ref('')
+const Neo4jValue: Record<string, any> = ref()
+let viz
+const config = ref({
     containerId: "viz",
     neo4j: {
         serverUrl: "bolt://10.20.30.34:7687",
@@ -90,22 +97,20 @@ var config = {
     //         }
     //     }
     // },
-}
+})
 
 const draw = () => {
-    window.addEventListener('wheel', handleWheel, { passive: true });
-    viz = new NeoVis(config);
+    viz = new NeoVis(config.value);
+    config.value.initialCypher = input.value
     viz.registerOnEvent('clickNode', (e) => {
         // e: { nodeId: number; node: Node }
+        Neo4jValue.value = e.node.raw.properties
         console.info(e.node.raw.properties);
     });
     viz.render()
 
 }
-// 滚动事件处理器
-const handleWheel = (event) => {
-    // 处理滚动事件的代码
-}
+
 onMounted(() => {
     draw()
 })
