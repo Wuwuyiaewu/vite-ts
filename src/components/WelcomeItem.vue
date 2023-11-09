@@ -1,7 +1,5 @@
 <script setup lang="ts">
-defineProps<{
-  msg?: number
-}>()
+
 </script>
 <template>
   <div class="item">
@@ -11,7 +9,6 @@ defineProps<{
     <div class="details">
       <h3>
         <slot name="heading"></slot>
-        {{ msg }}
       </h3>
       <slot></slot>
     </div>

@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue';
+import { ref } from 'vue';
 import {getFake} from '@/service/_Fake.service'
 const { count } = defineProps({
   count: Number,
