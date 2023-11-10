@@ -1,12 +1,16 @@
-
-
 <template>
   <main>
-    login
-    <Father></Father>
+    <el-container>
+      <el-header><HeaderMenuComponent/></el-header>
+      <el-container>
+        <SideBar/>
+        <el-main>
+        </el-main>
+      </el-container>
+    </el-container>
   </main>
 </template>
 <script setup lang="ts">
-import Father from '@/components/example/FatherSFC.vue'
-
+import HeaderMenuComponent from '@/components/HeaderMenuComponent.vue'
+import SideBar from '@/components/SideBarComponent.vue'
 </script>

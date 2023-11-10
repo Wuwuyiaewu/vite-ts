@@ -3,14 +3,11 @@
         <el-header><el-input v-model="input" placeholder="Please input Cypher" @keydown.enter="draw" /></el-header>
         <el-container class="crc__bloom__box">
             <div id="viz" ref="canvas">
-                viz
             </div>
             <DescriptionItem :Neo4jValue="Neo4jValue" :visible="visible" @confirm="closeDrawer"></DescriptionItem>
         </el-container>
     </el-container>
-    <el-button @click="openDraw()">
-        Open Drawer with customized header
-    </el-button>
+    <el-button @click="cypher_0()"> cypher direction</el-button>
     <el-button @click="draw()">draw</el-button>
     <el-button @click="getItemCardPdf(true, 'Bloom')">download</el-button>
 </template>
@@ -21,7 +18,7 @@ import JsPDF from "jspdf";
 import NeoVis from 'neovis.js';
 import type { NeovisConfig } from 'neovis.js'
 import DescriptionItem from '@/components/DescriptionComponent.vue'
-import { onMounted, ref, nextTick } from 'vue'
+import { onMounted, ref } from 'vue'
 interface Ref<T> {
     value: T
 }
@@ -46,7 +43,9 @@ const Neo4jValue: Record<string, any> = ref()
 //         await this.driver.close();
 //     }
 // }
-
+const cypher_0 = () => {
+    input.value = "match p=()-[]->() return p limit 20"
+}
 const config: Ref<NeovisConfig> = ref()
 config.value = {
     containerId: "viz",
@@ -60,84 +59,135 @@ config.value = {
     // 找節點包含數量：MATCH (n) RETURN distinct labels(n), count(*)
     // nonFlat: true,
     visConfig: {
+        autoResize: true,
+        // clickToUse: true, // 點擊canvas後才可異動
         nodes: {
-            shape: 'circle',
-            physics: true,
-            color: "#000",
-            labelHighlightBold: true,
+            borderWidth: 0,
             widthConstraint: {
-                minimum: 50,
-                maximum: 100
+                minimum: 200,
+                maximum: 200
             },
-            mass: 1,
-            icon: {
-                face: "green",
-                code: "green",
-                size: 100,  // 50,
-                color: "green",
-                weight: "700",
-            }
-        },
-        edges: {
-            smooth: true,
-            arrows: {
-                to: { enabled: true },
-                // from: { enabled: true },
-            }
+            // physics: false, // 節點可移動到固定位置
         },
         physics: {
-
-        }
+            enabled: true,
+            barnesHut: {
+                // centralGravity: 0,
+                // gravitationalConstant: -20000,  //调整引力常数，根据需要适应距离
+                // springLength: 150, // 调整弹簧长度，根据需要适应距离
+            },
+        },
+        edges: {
+            // arrows: {
+            //     to: true,
+            // },
+            //length: 200, //連結線長度
+            hoverWidth: 200,
+            // smooth: {
+            //   enabled: false,
+            //   type: "WROTE",
+            //   roundness: 0,
+            // },
+        },
     },
     labels: {
-        DB: {
+          DB: {
+              label: "name",
+              value: "pagerank",
+              size: "20",
+              font: {
+                size: '12',
+              },
+          },
+          Tool: {
             label: "name",
             value: "pagerank",
-            group: "community",
+            size: "20",
             font: {
-                size: '2',
-                color: '#77777'
+              size: '12',
             }
-        },
-        Tool: {
-            label: "name",
-            value: "pagerank",
-            group: "community",
-            font: {
-                size: '2',
-                color: '#77777'
-            }
-        },
-        Person: {
-            label: "name",
-            value: "pagerank",
-            group: "community",
-            font: {
-                size: '2',
-                color: '#77777'
-            }
-        },
-        Movie: {
+          },
+          Movie: {
             label: "title",
             value: "pagerank",
-            group: "community",
+            size: "20",
             font: {
-                size: '3',
-                color: '#77777',
-                background: "#333"
+              size: '12',
+            },
+            // color: {
+            //   background: "#e9a89b",
+            //   highlight: "#e9a89b",
+            // }
+          },
+          Person: {
+            label: "name",
+            value: "pagerank",
+            size: "20",
+            font: {
+              size: '12',
             }
-        }
-    },
+          },
+      },
     relationships: {
+        ACTED_IN: {
+            [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
+                static: {
+                    label: "ACTED_IN",
+                    font: {
+                        "background": "none",
+                        "strokeWidth": "10",
+                        "size": 12,
+                    }
+                }
+            }
+        },
+        WROTE: {
+            [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
+                static: {
+                    label: "WROTE",
+                    font: {
+                        "background": "none",
+                        "strokeWidth": "10",
+                        "size": 12,
+                    }
+                }
+            }
+        },
         DIRECTED: {
             [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
                 static: {
                     label: "DIRECTED",
-                    color: "red",
+                    font: {
+                        "background": "none",
+                        "strokeWidth": "10",
+                        "size": 12,
+                    }
                 }
             }
         },
+        CONTAINS: {
+            [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
+                static: {
+                    label: "CONTAINS",
+                    font: {
+                        "background": "none",
+                        "strokeWidth": "10",
+                        "size": 12,
+                    }
+                }
+            }
+        }
     },
+    // relationships: {
+    //     DIRECTED: {
+    //         [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
+    //             static: {
+    //                 label: "DIRECTED",
+    //                 color: "red",
+    //             }
+    //         }
+    //     },
+    // },
 }
 const watermarkedDataURL = (canvas: Ref<HTMLCanvasElement>) => {
     canvas.value.classList.add('canvas_water')

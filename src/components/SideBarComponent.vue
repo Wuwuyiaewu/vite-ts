@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 import {
-  Document,
   Menu as IconMenu,
-  Location,
-  Setting,
 } from '@element-plus/icons-vue'
 const handleOpen = (key: string, keyPath: string[]) => {
 }
@@ -15,83 +12,68 @@ const handleClose = (key: string, keyPath: string[]) => {
   <el-aside>
     <el-row class="tac">
       <el-col :span="24">
-        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose">
+        <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+          active-text-color="#ffd04b" background-color="#545c64" text-color="#fff">
           <el-sub-menu index="1">
             <template #title>
               <el-icon>
-                <location />
+                <icon-menu />
               </el-icon>
-              <span>Navigator One</span>
+              <span>風險總覽</span>
             </template>
-            <el-menu-item-group title="Group One">
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-              <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>item four</template>
-              <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
+            <el-menu-item index="1-1">監控指標</el-menu-item>
+            <el-menu-item index="1-2">告警資訊</el-menu-item>
+            <el-menu-item index="1-3">平台通知</el-menu-item>
+            <el-menu-item index="1-4">負面新聞</el-menu-item>
           </el-sub-menu>
-          <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <el-icon>
-              <document />
-            </el-icon>
-            <span>Navigator Three</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon>
-              <setting />
-            </el-icon>
-            <span>Navigator Four</span>
-          </el-menu-item>
-        </el-menu>
-      </el-col>
-      <el-col :span="12">
-        <h5 class="mb-2">Custom colors</h5>
-        <el-menu active-text-color="#ffd04b"   background-color="#545c64" class="el-menu-vertical-demo" default-active="1"
-          text-color="#fff" @open="handleOpen" @close="handleClose">
-          <el-sub-menu index="1">
+          <el-sub-menu index="2">
             <template #title>
               <el-icon>
-                <location />
+                <icon-menu />
               </el-icon>
-              <span>Navigator One</span>
+              <span>風險通報</span>
             </template>
-            <el-menu-item-group title="Group One">
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
-            </el-menu-item-group>
-            <el-menu-item-group title="Group Two">
-              <el-menu-item index="1-3">item three</el-menu-item>
-            </el-menu-item-group>
-            <el-sub-menu index="1-4">
-              <template #title>item four</template>
-              <el-menu-item index="1-4-1">item one</el-menu-item>
-            </el-sub-menu>
+            <el-menu-item index="2-1">個別申請交易資訊分享</el-menu-item>
+            <el-menu-item index="2-2">潛在可疑交易資訊分享</el-menu-item>
+            <el-menu-item index="2-3">名單資料庫</el-menu-item>
           </el-sub-menu>
-          <el-menu-item index="2">
-            <el-icon><icon-menu /></el-icon>
-            <span>Navigator Two</span>
-          </el-menu-item>
-          <el-menu-item index="3" disabled>
-            <el-icon>
-              <document />
-            </el-icon>
-            <span>Navigator Three</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <el-icon>
-              <setting />
-            </el-icon>
-            <span>Navigator Four</span>
-          </el-menu-item>
+          <el-sub-menu index="3">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>使用者資訊</span>
+            </template>
+            <el-menu-item index="3-1">權限資訊</el-menu-item>
+            <el-menu-item index="3-2">名單查詢紀錄</el-menu-item>
+            <el-menu-item index="3-3">下載紀錄</el-menu-item>
+            <el-menu-item index="3-4">使用時間紀錄</el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="4">
+            <template #title>
+              <el-icon>
+                <icon-menu />
+              </el-icon>
+              <span>平台管理</span>
+            </template>
+            <el-menu-item index="4-1">權限審核</el-menu-item>
+            <el-menu-item index="4-2">授權紀錄</el-menu-item>
+            <el-menu-item index="4-3">通知管理</el-menu-item>
+            <el-menu-item index="4-4">名單管理</el-menu-item>
+            <el-menu-item index="4-5">帳號管理</el-menu-item>
+            <el-menu-item index="4-6">角色管理</el-menu-item>
+            <el-menu-item index="4-7">菜單管理</el-menu-item>
+          </el-sub-menu>
+          <router-link :to="'crc'">
+            <el-menu-item index="5">
+              <template #title>
+                <el-icon>
+                  <icon-menu />
+                </el-icon>
+                Neo4j
+              </template>
+            </el-menu-item>
+          </router-link>
         </el-menu>
       </el-col>
     </el-row>
@@ -99,7 +81,16 @@ const handleClose = (key: string, keyPath: string[]) => {
 </template>
   
 <style lang="scss" scoped>
-.el-menu-vertical-demo{
+a {
+  text-decoration: none;
+  color: #fff;
 
-}
-</style>
+  &.router-link-active,
+  &.router-link-exact-active {
+    color: #ffd04b;
+
+    :deep(.el-menu-item) {
+      color: #ffd04b;
+    }
+  }
+}</style>

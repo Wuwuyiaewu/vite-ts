@@ -2,7 +2,7 @@
     <el-drawer :model-value="props.visible" :show-close="false" :modal="false" :direction="'ltr'" :modalClass="'modalclass'">
         <template #header="{ close, titleId, titleClass }">
             <h4 :id="titleId" :class="titleClass">資料詳情</h4>
-            <el-button type="danger" @click="emit('confirm',{close},false)">
+            <el-button type="danger" @click="emit('confirm', { close }, false)">
                 <el-icon class="el-icon--left">
                     <CircleCloseFilled />
                 </el-icon>
@@ -15,40 +15,38 @@
         </el-descriptions>
     </el-drawer>
 </template>
-  
 <script setup lang="ts">
-import { ref} from 'vue'
+import { ref } from 'vue'
 import { CircleCloseFilled } from '@element-plus/icons-vue'
 const props = defineProps({
     Neo4jValue: {
         type: Object, // 這裡的類型應該是您要傳遞的 Neo4jValue 的類型
         required: true // 如果 Neo4jValue 是必需的，可以添加這個選項
     },
-    visible:{
-        type:Boolean,
+    visible: {
+        type: Boolean,
         required: true
     }
 })
 const emit = defineEmits(["confirm"]);
 </script>
   
-<style scoped>
+<style scoped lang="scss">
+:deep(.el-drawer__body) {
+    background: #000;
+}
+
 .descriptions-box {
-    border: 5px solid #E9ECEF;
-    overflow: hidden;
-    height: 400px;
-}
-:deep(.descriptions-box .el-descriptions__header) {
-    background: #F8F9FA;
-    padding: 10px;
-}
-
-:deep(.descriptions-box .el-descriptions__label) {
-    font-size: 1.125rem;
-    font-weight: 700;
+    :deep(.el-descriptions__table th) {
+        font-weight: 700;
+        padding: 10px;
+        font-size: 1.25rem;
+    }
+    :deep(.el-descriptions__table td) {
+        color: #000;
+        font-size: 1.125rem;
+        padding: 10px;
+    }
 }
 
-:deep(.descriptions-box .el-descriptions__content) {
-    font-weight: 700;
-}
 </style>
