@@ -1,7 +1,6 @@
+import axios, { AxiosError } from "axios";
 import router from "@/router";
-// import { useApplicationStore } from "@/stores/application";
-import { ElLoading,ElMessage } from 'element-plus'
-import axios, { type AxiosError } from "axios";
+import { ElLoading, ElMessage } from 'element-plus';
 const http = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
   timeout: import.meta.env.VITE_API_TIMEOUT,
@@ -22,7 +21,7 @@ http.interceptors.request.use(
   },
   function (error) {
     // Do something with request error
-    ElMessage.error("网络异常");
+    ElMessage.error("Network error");
     console.error("axios - interceptors - request - error:", error);
     return Promise.reject(error);
   }
@@ -35,14 +34,15 @@ http.interceptors.response.use(
     // Do something with response data
     // const applicationStore = useApplicationStore();
     // applicationStore.stopLoading();
+    ElLoading.service().close();
     return response;
   },
   function (error: AxiosError) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
     console.error("axios - interceptors - response - error:", error);
-    ElMessage.error("网络异常");
-    ElLoading.service().close()
+    ElMessage.error("Network error");
+    ElLoading.service().close();
     if (error.response) {
       // TODO: 依據 api 規格與需求，針對 status code 執行對應程式(401、403…等)
       switch (error.response.status) {

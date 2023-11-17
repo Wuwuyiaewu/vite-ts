@@ -48,9 +48,15 @@ const cypher_0 = () => {
 }
 const config: Ref<NeovisConfig> = ref()
 config.value = {
+    // containerId: "viz",
+    // neo4j: {
+    //     serverUrl: "bolt://10.20.30.34:7687",
+    //     serverUser: "neo4j",
+    //     serverPassword: "password"
+    // },
     containerId: "viz",
     neo4j: {
-        serverUrl: "bolt://10.20.30.34:7687",
+        serverUrl: "bolt://localhost:7687",
         serverUser: "neo4j",
         serverPassword: "password"
     },
@@ -91,43 +97,43 @@ config.value = {
         },
     },
     labels: {
-          DB: {
-              label: "name",
-              value: "pagerank",
-              size: "20",
-              font: {
-                size: '12',
-              },
-          },
-          Tool: {
+        DB: {
             label: "name",
             value: "pagerank",
             size: "20",
             font: {
-              size: '12',
+                size: '12',
+            },
+        },
+        Tool: {
+            label: "name",
+            value: "pagerank",
+            size: "20",
+            font: {
+                size: '12',
             }
-          },
-          Movie: {
+        },
+        Movie: {
             label: "title",
             value: "pagerank",
             size: "20",
             font: {
-              size: '12',
+                size: '12',
             },
             // color: {
             //   background: "#e9a89b",
             //   highlight: "#e9a89b",
             // }
-          },
-          Person: {
+        },
+        Person: {
             label: "name",
             value: "pagerank",
             size: "20",
             font: {
-              size: '12',
+                size: '12',
             }
-          },
-      },
+        },
+    },
     relationships: {
         ACTED_IN: {
             [NeoVis.NEOVIS_ADVANCED_CONFIG]: {
