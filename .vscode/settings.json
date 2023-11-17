@@ -1,0 +1,57 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+    // "source.organizeImports": true
+  },
+  "stylelint.snippet": [
+    "css",
+    "less",
+    "postcss",
+    "scss"
+  ],
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "html",
+    "javascript",
+    "vue-html",
+    "vue-postcss",
+    "sass",
+    "markdown",
+    "vue",
+  ],
+  "editor.formatOnSave": true,
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "html",
+    "vue"
+  ],
+  "cSpell.words": [
+    "accordiontab",
+    "cascadeselect",
+    "columngroup",
+    "datatable",
+    "fileupload",
+    "inputnumber",
+    "inputswitch",
+    "inputtext",
+    "overlaypanel",
+    "panelmenu",
+    "Pinia",
+    "primevue",
+    "progressbar",
+    "progressspinner",
+    "radiobutton",
+    "scrollpanel",
+    "selectbutton",
+    "tabmenu",
+    "tailwindcss",
+    "toastservice"
+  ],
+}

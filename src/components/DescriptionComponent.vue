@@ -1,5 +1,6 @@
 <template>
-    <el-drawer :model-value="props.visible" :show-close="false" :modal="false" :direction="'ltr'" :modalClass="'modalclass'">
+    <el-drawer :model-value="props.visible" :show-close="false" :modal="false" :direction="'ltr'"
+        :modalClass="'modalclass'">
         <template #header="{ close, titleId, titleClass }">
             <h4 :id="titleId" :class="titleClass">資料詳情</h4>
             <el-button type="danger" @click="emit('confirm', { close }, false)">
@@ -16,7 +17,6 @@
     </el-drawer>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
 import { CircleCloseFilled } from '@element-plus/icons-vue'
 const props = defineProps({
     Neo4jValue: {
@@ -32,7 +32,7 @@ const emit = defineEmits(["confirm"]);
 </script>
   
 <style scoped lang="scss">
-:deep(.el-drawer__body) {
+:deep(.el-drawer__Body) {
     background: #000;
 }
 
@@ -42,11 +42,11 @@ const emit = defineEmits(["confirm"]);
         padding: 10px;
         font-size: 1.25rem;
     }
+
     :deep(.el-descriptions__table td) {
-        color: #000;
-        font-size: 1.125rem;
         padding: 10px;
+        font-size: 1.125rem;
+        color: #000;
     }
 }
-
 </style>

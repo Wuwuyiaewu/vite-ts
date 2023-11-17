@@ -51,10 +51,12 @@ declare module 'vue' {
     LoginComponent: typeof import('./src/components/example/LoginComponent.vue')['default']
     MockApi: typeof import('./src/components/example/MockApi.vue')['default']
     Neo4jDDD: typeof import('./src/components/example/Neo4jDDD.vue')['default']
+    PanelMenu: typeof import('./src/components/primeVue/PanelMenu.vue')['default']
     PrimeLoginComponent: typeof import('./src/components/example/PrimeLoginComponent.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SideBarComponent: typeof import('./src/components/SideBarComponent.vue')['default']
+    SidePanel: typeof import('./src/components/PrimeVue/SidePanel.vue')['default']
     TheWelcome: typeof import('./src/components/example/TheWelcome.vue')['default']
     WelcomeItem: typeof import('./src/components/example/WelcomeItem.vue')['default']
   }
